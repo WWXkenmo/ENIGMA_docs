@@ -2,6 +2,10 @@
 ENIGMA - A matrix completion based deconvolution algorithm
 ==========================================================
 
+.. image:: https://github.com/WWXkenmo/ENIGMA/blob/main/main.png
+   :width: 300px
+   :align: left
+
 Cell type-specific gene expression (CSE) brings novel insights into physiological and pathological processes compared with bulk tissue gene expression. Although fluorescence-activated cell sorting and single-cell RNA sequencing (scRNA-seq) are two widely used techniques to detect CSE, the constraints of cost and labor force make it impractical as a routine on large patient cohorts. 
 
 Here, we present **ENIGMA**, an algorithm that using matrix completion to accurately deconvolute bulk RNA-seq into CSE matrices and cell type fraction matrices without the need of physical sorting or sequencing of single cells. We demonstrated the superior performance of ENIGMA to existing algorithms while requiring much less running time on both simulated and realistic datasets. ENIGMA could also reveal a monocyte to macrophage transition in arthritis patients and a beta cell-specific module associated with senescence and apoptosis in type 2 diabetes. Together, ENIGMA improves the CSE estimation and extends our understandings for diverse biological processes.
