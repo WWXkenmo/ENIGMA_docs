@@ -3,10 +3,10 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-ENIGMA -  A fast and accurate deconvolution algorithm based on regularized matrix completion algorithm
+ENIGMA-A fast and accurate deconvolution algorithm based on regularized matrix completion algorithm
+
 ==================================
 
-.. image:: https://github.com/WWXkenmo/ENIGMA/blob/main/figure_git.jpg
 
 Cell type-specific gene expression (CSE) brings novel insights into physiological and pathological processes compared with bulk tissue gene expression. Although fluorescence-activated cell sorting and single-cell RNA sequencing (scRNA-seq) are two widely used techniques to detect CSE, the constraints of cost and labor force make it impractical as a routine on large patient cohorts. 
 
