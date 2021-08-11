@@ -2,9 +2,9 @@
 ENIGMA - A matrix completion based deconvolution algorithm
 ==========================================================
 
-.. image:: https://raw.githubusercontent.com/WWXkenmo/ENIGMA/main/main.png
-   :width: 100px
-   :align: center
+.. image:: https://raw.githubusercontent.com/WWXkenmo/ENIGMA/main/figure1b.png
+   :width: 300px
+   :align: left
 
 Cell type-specific gene expression (CSE) brings novel insights into physiological and pathological processes compared with bulk tissue gene expression. Although fluorescence-activated cell sorting and single-cell RNA sequencing (scRNA-seq) are two widely used techniques to detect CSE, the constraints of cost and labor force make it impractical as a routine on large patient cohorts. 
 
