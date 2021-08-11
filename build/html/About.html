@@ -1,0 +1,221 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>About ENIGMA &mdash; ENIGMA v1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Installation Guide" href="Installations.html" />
+    <link rel="prev" title="ENIGMA - A matrix completion based deconvolution algorithm" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> ENIGMA
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Main:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">About ENIGMA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Installations.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tutorial.html">Tutorial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="API.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Reference.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ReleaseNotes.html">Release Notes</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ENIGMA</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>About ENIGMA</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/About.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="about-enigma">
+<h1>About ENIGMA<a class="headerlink" href="#about-enigma" title="Permalink to this headline">¶</a></h1>
+<p>The general strategy of ENIGMA about performing bulk gene expression deconvolution to infer CSE on sample-level is borrowing the idea from Recommender Systems. We regarded this task as a matrix completion problem, with bulk gene expression matrix could be represented as the linear combination of several cell type-specific expression matrix. The linear combination coefficient is cell type fraction (θ_i), which could be estimated through using a cell type fraction estimation algorithm or experimentally measurements through cell sorting. Our goal is to minimize the distance between observed bulk gene expression matrix and reconstituted bulk expression matrix through linear combination of inferred CSE.</p>
+<p>Besides the minimization of the main object function, we also added two additional constraint terms to make the inference more robust. First, we considered each aggregated CSE should be as close as to the corresponding reference, which could also be regarded as the prior expression information derived from reference matrix. Second, we used regularization term to constraint the rank of inferred CSE. In matrix completion problem, low-rank property of inferred signal is ubiquitous in real-world application. Also, previous analysis of the spectrum of bulk DNA methylation profile enlighten that the mixing profile has the latent variation/eigenvector that associates with the cell type fraction variation among samples. Therefore, assuming the relatively low-rank property in CSE is consistent with our known knowledge.</p>
+<p>ENIGMA has three main steps. First, ENIGMA requires cell type reference expression matrix (signature matrix), which could be derived from either FACS RNA-seq or scRNA-seq datasets through calculating the average expression value of each gene from each cell type. Previous researches have widely used reference matrix curated from different platforms, for instance, Newman et al. used LM22 immune signature matrix which derived from microarray platform to deconvolute bulk RNA-seq dataset8. However, we have to note that use references from different platforms would introduce unwanted batch effect between reference and bulk RNA-seq matrix, especially for the reference matrix derived from low coverage scRNA-seq dataset. To overcome this challenge, we used previously presented method that is specifically designed for correcting batch effect among bulk RNA-seq matrix and reference matrix. Second, ENIGMA applied robust linear regression model15 to estimate each cell type fractions among samples based on reference matrix derived from the first step. Third, based on reference matrix and cell type fraction matrix estimated from step 1 and step 2, ENIGMA applied constrained matrix completion algorithm to deconvolute bulk RNA-seq matrix into CSE on sample-level. In order to constraint the model complexity to prevent overfitting, we proposed to use two different norm penalty functions to regularize resulted CSE. Finally, the returned CSE could be used to identify cell type-specific DEG, visualize each gene’s expression pattern on the cell type-specific manifold space (e.g. t-SNE, UMAP), and build the cell type-specific co-expression network to identify modules that relevant to phenotypes of interest.</p>
+<p>See <a class="reference external" href="https://www.biorxiv.org/content/10.1101/2021.06.30.450493v1">bioRxiv</a> for a detailed exposition of the methods.</p>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="Installations.html" class="btn btn-neutral float-right" title="Installation Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="index.html" class="btn btn-neutral float-left" title="ENIGMA - A matrix completion based deconvolution algorithm" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Weixu(Ken) Wang &amp; Jun Yao.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

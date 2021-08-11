@@ -1,12 +1,6 @@
-.. ENIGMA documentation master file, created by
-   sphinx-quickstart on Wed Aug 11 07:18:25 2021.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
 
-ENIGMA-A fast and accurate deconvolution algorithm based on regularized matrix completion algorithm
-
-==================================
-
+ENIGMA - A matrix completion based deconvolution algorithm
+==========================================================
 
 Cell type-specific gene expression (CSE) brings novel insights into physiological and pathological processes compared with bulk tissue gene expression. Although fluorescence-activated cell sorting and single-cell RNA sequencing (scRNA-seq) are two widely used techniques to detect CSE, the constraints of cost and labor force make it impractical as a routine on large patient cohorts. 
 
@@ -27,15 +21,22 @@ Reference
       publisher={Cold Spring Harbor Laboratory}
     }
 
+Notes
+-----
+
+The example dataset for this tutorial could be downloaded from `here <https://github.com/WWXkenmo/ENIGMA/tree/master>`_.
+
 .. toctree::
-   :maxdepth: 1
-   :caption: Contents:
+   :maxdepth: 2
+   :caption: Main:
 
+   About
+   Installations
+   Tutorial
+   API
+   Reference
+   ReleaseNotes
 
-
-Indices and tables
 ==================
 
-* :ref:`genindex`
-* :ref:`modindex`
 * :ref:`search`

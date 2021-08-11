@@ -1,0 +1,297 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>Tutorial &mdash; ENIGMA v1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="API Reference" href="API.html" />
+    <link rel="prev" title="Installation Guide" href="Installations.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> ENIGMA
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Main:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="About.html">About ENIGMA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Installations.html">Installation Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tutorial</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#getting-started">1. Getting Started</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#batch-effect-correction">Batch effect correction</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#deconvolution-through-enigma">2. Deconvolution through ENIGMA</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="API.html">API Reference</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Reference.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ReleaseNotes.html">Release Notes</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ENIGMA</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Tutorial</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/Tutorial.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="tutorial">
+<h1>Tutorial<a class="headerlink" href="#tutorial" title="Permalink to this headline">¶</a></h1>
+<p><strong>ENIGMA</strong> is a method for deconvoluting bulk RNA-seq matrix into cell type fractions and cell type-specific expression matrices. User could freely explore the cell heterogeneity within the bulk RNA-seq samples, study the differential expression gene, cell type-specific gene co-expression module or differentiation trajectory. In this tutorial, I applied ENIGMA on NSCLC bulk RNA-seq and corresponding FACS RNA-seq collected by Gentles et al to illustrate the main steps of ENIGMA analysis.</p>
+<div class="section" id="getting-started">
+<h2>1. Getting Started<a class="headerlink" href="#getting-started" title="Permalink to this headline">¶</a></h2>
+<p>The first step of ENIGMA require bulk RNA-seq and reference matrix to construct ENIGMA object, the ENIGMA object contains parameters and datasets for deconvolution in the following steps</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="nf">suppressPackageStartupMessages</span><span class="p">(</span><span class="nf">library</span><span class="p">(</span><span class="n">magrittr</span><span class="p">))</span>
+<span class="nf">suppressPackageStartupMessages</span><span class="p">(</span><span class="nf">library</span><span class="p">(</span><span class="n">scater</span><span class="p">))</span>
+<span class="nf">suppressPackageStartupMessages</span><span class="p">(</span><span class="nf">library</span><span class="p">(</span><span class="n">Biobase</span><span class="p">))</span>
+<span class="nf">suppressPackageStartupMessages</span><span class="p">(</span><span class="nf">library</span><span class="p">(</span><span class="n">ENIGMA</span><span class="p">))</span>
+
+<span class="n">dataNSCLC</span> <span class="o">&lt;-</span> <span class="nf">readRDS</span><span class="p">(</span><span class="s">&quot;/load/Data/Path/dataNSCLC.rds&quot;</span><span class="p">)</span>
+<span class="n">ref_sc</span> <span class="o">&lt;-</span> <span class="nf">readRDS</span><span class="p">(</span><span class="s">&quot;/load/Data/Path/ref.rds&quot;</span><span class="p">)</span>
+
+<span class="c1">#We used the third patients to generate reference</span>
+<span class="n">ref_sc_sub</span> <span class="o">&lt;-</span> <span class="n">ref_sc</span><span class="p">[,</span><span class="n">ref_sc</span><span class="o">$</span><span class="n">PatientID</span> <span class="o">%in%</span> <span class="s">&quot;3&quot;</span> <span class="o">==</span> <span class="kc">TRUE</span><span class="p">]</span>
+<span class="n">ref_sc_sub</span> <span class="o">&lt;-</span> <span class="n">ref_sc_sub</span><span class="p">[,</span><span class="n">ref_sc_sub</span><span class="o">$</span><span class="n">CellFromTumor</span> <span class="o">%in%</span> <span class="s">&quot;1&quot;</span><span class="p">]</span>
+<span class="n">ref_sc_sub</span> <span class="o">&lt;-</span> <span class="n">ref_sc_sub</span><span class="p">[,</span><span class="n">ref_sc_sub</span><span class="o">$</span><span class="n">main_celltype</span> <span class="o">%in%</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;Alveolar&quot;</span><span class="p">,</span><span class="s">&quot;Epi&quot;</span><span class="p">)</span> <span class="o">==</span> <span class="kc">FALSE</span><span class="p">]</span>
+
+<span class="n">Bulk</span> <span class="o">&lt;-</span> <span class="n">dataNSCLC</span><span class="p">[[</span><span class="m">5</span><span class="p">]]</span>
+<span class="n">Tumor</span> <span class="o">&lt;-</span> <span class="n">dataNSCLC</span><span class="p">[[</span><span class="m">1</span><span class="p">]]</span>
+<span class="n">Immune</span> <span class="o">&lt;-</span> <span class="n">dataNSCLC</span><span class="p">[[</span><span class="m">2</span><span class="p">]]</span>
+<span class="n">Endothelial</span> <span class="o">&lt;-</span> <span class="n">dataNSCLC</span><span class="p">[[</span><span class="m">3</span><span class="p">]]</span>
+<span class="n">Fibroblast</span> <span class="o">&lt;-</span> <span class="n">dataNSCLC</span><span class="p">[[</span><span class="m">4</span><span class="p">]]</span>
+<span class="n">pheno</span> <span class="o">&lt;-</span> <span class="n">dataNSCLC</span><span class="p">[[</span><span class="m">6</span><span class="p">]]</span>
+
+<span class="c1"># The pheno variable contain the label of each samples (LUSC vs LUAD)</span>
+<span class="nf">names</span><span class="p">(</span><span class="n">pheno</span><span class="p">)</span> <span class="o">&lt;-</span> <span class="nf">colnames</span><span class="p">(</span><span class="n">Tumor</span><span class="p">)</span>
+
+<span class="c1"># Create ENIGMA object</span>
+<span class="n">egm</span> <span class="o">=</span> <span class="nf">create_ENIGMA</span><span class="p">(</span><span class="n">bulk</span> <span class="o">=</span> <span class="n">Bulk</span><span class="p">,</span> <span class="n">ref</span> <span class="o">=</span> <span class="nf">exprs</span><span class="p">(</span><span class="n">ref_sc_sub</span><span class="p">),</span> <span class="n">ref_type</span> <span class="o">=</span> <span class="s">&quot;single_cell&quot;</span><span class="p">,</span> <span class="n">meta_ref</span> <span class="o">=</span> <span class="nf">pData</span><span class="p">(</span><span class="n">ref_sc_sub</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>ENIGMA would automatically identify the type of reference matrix (FACS RNA-seq or scRNA-seq), and run the corresponding batch effect correction methods to generate reference matrix (S-mode and B-mode)</p>
+<div class="section" id="batch-effect-correction">
+<h3>Batch effect correction<a class="headerlink" href="#batch-effect-correction" title="Permalink to this headline">¶</a></h3>
+<p>We used scRNA-seq to illustrate the S-mode batch effect correction</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">egm</span> <span class="o">=</span> <span class="nf">batch_correct</span><span class="p">(</span><span class="n">egm</span><span class="p">,</span> <span class="n">varname_cell_type</span> <span class="o">=</span> <span class="s">&quot;main_celltype&quot;</span><span class="p">,</span> <span class="n">n_pseudo_bulk</span><span class="o">=</span><span class="m">100</span><span class="p">)</span>
+
+<span class="c1">#check the reference profile</span>
+<span class="nf">head</span><span class="p">(</span><span class="n">egm</span><span class="o">@</span><span class="n">ref</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We used FACS RNA-seq to illustrate the B-mode batch effect correction, regarding the expression profile of T3 patients as the the reference, we noted that the FACS RNA-seq is not necessarily to be generated from the same cohort with the mixture(bulk RNA-seq) but could from the independent study.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">B_ref</span> <span class="o">=</span> <span class="n">dataNSCLC</span><span class="p">[</span><span class="m">1</span><span class="o">:</span><span class="m">4</span><span class="p">]</span> <span class="o">%&gt;%</span>
+<span class="nf">lapply</span><span class="p">(</span><span class="nf">function</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="n">x</span><span class="p">[,</span><span class="s">&quot;T3&quot;</span><span class="p">])</span> <span class="o">%&gt;%</span>
+<span class="nf">do.call</span><span class="p">(</span><span class="n">cbind</span><span class="p">,</span> <span class="n">.</span><span class="p">)</span> <span class="o">%&gt;%</span>
+<span class="nf">set_colnames</span><span class="p">(</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;Tumor&quot;</span><span class="p">,</span><span class="s">&quot;Immune&quot;</span><span class="p">,</span><span class="s">&quot;Endothelial&quot;</span><span class="p">,</span><span class="s">&quot;Fibroblast&quot;</span><span class="p">)</span> <span class="p">)</span>
+<span class="n">B_ref</span> <span class="o">=</span> <span class="n">B_ref</span><span class="p">[</span><span class="nf">rownames</span><span class="p">(</span><span class="n">egm</span><span class="o">@</span><span class="n">ref</span><span class="p">),]</span>
+
+<span class="n">object_b_mode</span> <span class="o">=</span> <span class="nf">create_ENIGMA</span><span class="p">(</span><span class="n">bulk</span> <span class="o">=</span> <span class="n">Bulk</span><span class="p">[</span><span class="nf">rownames</span><span class="p">(</span><span class="n">B_ref</span><span class="p">),],</span> <span class="n">ref</span> <span class="o">=</span> <span class="n">B_ref</span><span class="p">,</span> <span class="n">ref_type</span> <span class="o">=</span> <span class="s">&quot;bulk&quot;</span><span class="p">,</span><span class="n">meta_ref</span> <span class="o">=</span> <span class="nf">as.matrix</span><span class="p">(</span><span class="nf">colnames</span><span class="p">(</span><span class="n">B_ref</span><span class="p">)))</span>
+<span class="n">object_b_mode</span> <span class="o">=</span> <span class="nf">batch_correct</span><span class="p">(</span><span class="n">object_b_mode</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="deconvolution-through-enigma">
+<h2>2. Deconvolution through ENIGMA<a class="headerlink" href="#deconvolution-through-enigma" title="Permalink to this headline">¶</a></h2>
+<p>ENIGMA provides two type of regularized matrix completion methods to deconvolute bulk RNA-seq profile, L2-max norm and trace norm regularization. ENIGMA used sqrt() or log2() transformation to stablize each gene variance, make each gene expression distribution closer to the gaussian distribution.</p>
+<p>ENIGMA first used robust linear regression to estimation cell type fractions across each sample.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">egm</span><span class="o">@</span><span class="n">bulk</span> <span class="o">&lt;-</span> <span class="n">Bulk</span><span class="p">[</span><span class="nf">rownames</span><span class="p">(</span><span class="n">tmp</span><span class="o">$</span><span class="n">main_celltype</span><span class="p">),]</span>
+<span class="n">egm</span> <span class="o">=</span> <span class="nf">get_cell_proportion</span><span class="p">(</span><span class="n">egm</span><span class="p">)</span>
+<span class="nf">plot_proportion</span><span class="p">(</span><span class="n">egm</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Next, we performed RNA-seq deconvolution based on L2-max norm regularized matrix completion.</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">egm</span> <span class="o">=</span> <span class="nf">ENIGMA_L2_max_norm</span><span class="p">(</span><span class="n">egm</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="m">0.001</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="m">0.8</span><span class="p">,</span>
+                        <span class="n">beta</span><span class="o">=</span><span class="m">10000</span><span class="p">,</span><span class="n">tao_k</span><span class="o">=</span><span class="m">0.01</span><span class="p">,</span><span class="n">max.iter</span><span class="o">=</span><span class="m">1000</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>We also could used trace norm regularized matrix completion to perform deconvolution</p>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="n">egm</span> <span class="o">=</span> <span class="nf">ENIGMA_trace_norm</span><span class="p">(</span><span class="n">egm</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="m">0.0001</span><span class="p">,</span><span class="n">alpha</span><span class="o">=</span><span class="m">0.8</span><span class="p">,</span><span class="n">beta</span><span class="o">=</span><span class="m">200</span><span class="p">,</span><span class="n">gamma</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span><span class="n">verbose</span><span class="o">=</span><span class="kc">TRUE</span><span class="p">,</span><span class="n">max.iter</span> <span class="o">=</span> <span class="m">300</span><span class="p">)</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="API.html" class="btn btn-neutral float-right" title="API Reference" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="Installations.html" class="btn btn-neutral float-left" title="Installation Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Weixu(Ken) Wang &amp; Jun Yao.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>

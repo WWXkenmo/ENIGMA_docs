@@ -1,0 +1,296 @@
+
+
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+  <title>API Reference &mdash; ENIGMA v1 documentation</title>
+  
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+
+  
+  
+
+  
+  
+
+  
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="References" href="Reference.html" />
+    <link rel="prev" title="Tutorial" href="Tutorial.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home"> ENIGMA
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption" role="heading"><span class="caption-text">Main:</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="About.html">About ENIGMA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Installations.html">Installation Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Tutorial.html">Tutorial</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">API Reference</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#create-enigma">create_ENIGMA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#enigma-l2-max-norm">ENIGMA_L2_max_norm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#enigma-trace-norm">ENIGMA_trace_norm</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Reference.html">References</a></li>
+<li class="toctree-l1"><a class="reference internal" href="ReleaseNotes.html">Release Notes</a></li>
+</ul>
+
+            
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">ENIGMA</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>API Reference</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/API.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="api-reference">
+<h1>API Reference<a class="headerlink" href="#api-reference" title="Permalink to this headline">¶</a></h1>
+<p>Below is the <strong>main</strong> function reference for ENIGMA. Notice that the package is under active development, and some features may not be stable yet.</p>
+<div class="section" id="create-enigma">
+<h2>create_ENIGMA<a class="headerlink" href="#create-enigma" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># Class Definition</span>
+<span class="nf">create_ENIGMA</span><span class="p">(</span>
+    <span class="n">bulk</span><span class="p">,</span>
+    <span class="n">ref</span><span class="p">,</span>
+    <span class="n">ref_type</span> <span class="o">=</span> <span class="nf">c</span><span class="p">(</span><span class="s">&quot;single_cell&quot;</span><span class="p">,</span> <span class="s">&quot;bulk&quot;</span><span class="p">),</span>
+    <span class="n">meta_bulk</span> <span class="o">=</span> <span class="kc">NULL</span><span class="p">,</span>
+    <span class="n">meta_ref</span> <span class="o">=</span> <span class="kc">NULL</span><span class="p">,</span>
+    <span class="n">assay</span> <span class="o">=</span> <span class="kc">NULL</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>bulk</strong>: raw bulk data matrix</p></li>
+<li><p><strong>ref</strong>: raw reference data, could be single cell (matrix, SingleCellExperiment object or Seurat object) or FACS bulk</p></li>
+<li><p><strong>ref_type</strong>: Determine the reference type. Should be either “single_cell” or “bulk”.</p></li>
+<li><p><strong>meta_bulk</strong>: metadata of bulk matrix</p></li>
+<li><p><strong>meta_ref</strong>: metadata of reference</p></li>
+</ul>
+</div>
+<div class="section" id="enigma-l2-max-norm">
+<h2>ENIGMA_L2_max_norm<a class="headerlink" href="#enigma-l2-max-norm" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># Class Definition</span>
+<span class="nf">ENIGMA_L2_max_norm</span><span class="p">(</span>
+    <span class="n">object</span><span class="p">,</span>
+    <span class="n">alpha</span> <span class="o">=</span> <span class="m">0.5</span><span class="p">,</span>
+    <span class="n">tao_k</span> <span class="o">=</span> <span class="m">0.01</span><span class="p">,</span>
+    <span class="n">beta</span> <span class="o">=</span> <span class="m">8000</span><span class="p">,</span>
+    <span class="n">epsilon</span> <span class="o">=</span> <span class="m">0.001</span><span class="p">,</span>
+    <span class="n">max.iter</span> <span class="o">=</span> <span class="m">1000</span><span class="p">,</span>
+    <span class="n">verbose</span> <span class="o">=</span> <span class="kc">TRUE</span><span class="p">,</span>
+    <span class="n">infer</span> <span class="o">=</span> <span class="kc">FALSE</span><span class="p">,</span>
+    <span class="n">pos</span> <span class="o">=</span> <span class="kc">TRUE</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>object</strong>: ENIGMA object</p></li>
+<li><p><strong>alpha</strong>: ENIGMA is a multi-objective optimization problem involve two object function, the distance function between observed bulk RNA-seq and reconstitute RNA-seq generated by weighted combination of CSE, and the distance function beween average CSE expression and cell type reference matrix. The alpha is used to determine weights of these two objects. If the alpha gets larger, the optimization attach greater importance on the the first object. Default: 0.5</p></li>
+<li><p><strong>tao_k</strong>: The step size of each round of gradient decent. Default: 0.01</p></li>
+<li><p><strong>beta</strong>: The regularization parameter to penalize the weight (deconvoluted expression) matrices from being too large. Default: 8000</p></li>
+<li><p><strong>epsilon</strong>: Determine the stop condition in CSE updating. Default: 0.001</p></li>
+<li><p><strong>max.iter</strong>: The maximum number of iterations. Default: 1000</p></li>
+<li><p><strong>verbose</strong>: Whether return the information after each step of processing. Default: TRUE</p></li>
+<li><p><strong>infer</strong>: Whether return the re-estimated cell type fractions. Default: FALSE</p></li>
+<li><p><strong>pos</strong>: Whether set all entries in CSE is positive. Default: TRUE</p></li>
+</ul>
+</div>
+<div class="section" id="enigma-trace-norm">
+<h2>ENIGMA_trace_norm<a class="headerlink" href="#enigma-trace-norm" title="Permalink to this headline">¶</a></h2>
+<div class="highlight-R notranslate"><div class="highlight"><pre><span></span><span class="c1"># Class Definition</span>
+<span class="nf">ENIGMA_trace_norm</span><span class="p">(</span>
+    <span class="n">object</span><span class="p">,</span>
+    <span class="n">alpha</span> <span class="o">=</span> <span class="m">0.5</span><span class="p">,</span>
+    <span class="n">beta</span> <span class="o">=</span> <span class="m">100</span><span class="p">,</span>
+    <span class="n">gamma</span> <span class="o">=</span> <span class="m">1</span><span class="p">,</span>
+    <span class="n">epsilon</span> <span class="o">=</span> <span class="m">1e-04</span><span class="p">,</span>
+    <span class="n">max.iter</span> <span class="o">=</span> <span class="m">100</span><span class="p">,</span>
+    <span class="n">verbose</span> <span class="o">=</span> <span class="kc">TRUE</span>
+    <span class="p">)</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p><strong>object</strong>: ENIGMA object</p></li>
+<li><p><strong>alpha</strong>: ENIGMA is a multi-objective optimization problem involve two object function, the distance function between observed bulk RNA-seq and reconstitute RNA-seq generated by weighted combination of CSE, and the distance function beween average CSE expression and cell type reference matrix. The alpha is used to determine weights of these two objects. If the alpha gets larger, the optimization attach greater importance on the the first object. Default: 0.5</p></li>
+<li><p><strong>beta</strong>: This parameter is used to control the latent dimension of each CSE, if this parameter gets larger, than the latent dimension of each CSE is smaller (lower trace norm value), which means that each sample is more similar with each others. The user need to tune this parameter based on the range of the singular value of the bulk RNA-seq matrix. Default: 100</p></li>
+<li><p><strong>gamma</strong>: This parameter is used to control the distance between CSE (X) and auxiliary variable (Y). Default: 1</p></li>
+<li><p><strong>epsilon</strong>: In trace norm based ENIGMA, the epsilon is not necessarily choose a extremly small value, the number of iteration would influence the latent dimensions of CSE, as each step is performing singular value thresholding. Default: 0.0001</p></li>
+<li><p><strong>max.iter</strong>: The maximum number of iterations. Default: 100</p></li>
+<li><p><strong>verbose</strong>: Whether return the information after each step of processing. Default: TRUE</p></li>
+</ul>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+        <a href="Reference.html" class="btn btn-neutral float-right" title="References" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+        <a href="Tutorial.html" class="btn btn-neutral float-left" title="Tutorial" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &#169; Copyright 2021, Weixu(Ken) Wang &amp; Jun Yao.
+
+    </p>
+  </div>
+    
+    
+    
+    Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    
+    provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+  
+  
+    
+   
+
+</body>
+</html>
